@@ -1,0 +1,21 @@
+package com.employe_management.erms.service;
+
+import com.employe_management.erms.entity.employe;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface employeInterface {
+
+    employe addEmploye(employe employe);
+
+    employe updateEmploye(employe employe);
+
+    employe getEmployeById(Long id);
+
+    void deleteEmploye(Long id);
+
+    List<employe> getAllEmploye();
+
+    List<employe> findByDepartment(Long departmentId);
+}

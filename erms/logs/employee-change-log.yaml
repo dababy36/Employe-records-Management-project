@@ -1,0 +1,123 @@
+{
+                "timestamp": "2025-01-18 14:30:44,635",
+                "level": "WARN",
+                "message": "HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)",
+                "logger": "org.hibernate.orm.deprecation",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:30:44,643",
+                "level": "WARN",
+                "message": "HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead",
+                "logger": "org.hibernate.orm.deprecation",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:30:48,256",
+                "level": "WARN",
+                "message": "Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR",
+                "logger": "org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:30:49,024",
+                "level": "WARN",
+                "message": "spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning",
+                "logger": "org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:37:45,342",
+                "level": "ERROR",
+                "message": "
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'logging.level.org.springframework.security' to org.springframework.boot.logging.LogLevel:
+
+    Property: logging.level.org.springframework.security
+    Value: "ERRO"
+    Origin: class path resource [application.properties] - 28:44
+    Reason: failed to convert java.lang.String to org.springframework.boot.logging.LogLevel (caused by java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.ERRO)
+
+Action:
+
+Update your application's configuration. The following values are valid:
+
+    DEBUG
+    ERROR
+    FATAL
+    INFO
+    OFF
+    TRACE
+    WARN
+",
+                "logger": "org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:38:13,051",
+                "level": "ERROR",
+                "message": "
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'logging.level.org.springframework.security' to org.springframework.boot.logging.LogLevel:
+
+    Property: logging.level.org.springframework.security
+    Value: "ERRO"
+    Origin: class path resource [application.properties] - 28:44
+    Reason: failed to convert java.lang.String to org.springframework.boot.logging.LogLevel (caused by java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.ERRO)
+
+Action:
+
+Update your application's configuration. The following values are valid:
+
+    DEBUG
+    ERROR
+    FATAL
+    INFO
+    OFF
+    TRACE
+    WARN
+",
+                "logger": "org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:38:44,225",
+                "level": "WARN",
+                "message": "HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)",
+                "logger": "org.hibernate.orm.deprecation",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:38:44,256",
+                "level": "WARN",
+                "message": "HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead",
+                "logger": "org.hibernate.orm.deprecation",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:38:48,353",
+                "level": "WARN",
+                "message": "Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR",
+                "logger": "org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer",
+                "thread": "restartedMain",
+                "exception": ""
+                }{
+                "timestamp": "2025-01-18 14:38:48,861",
+                "level": "WARN",
+                "message": "spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning",
+                "logger": "org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration",
+                "thread": "restartedMain",
+                "exception": ""
+                }

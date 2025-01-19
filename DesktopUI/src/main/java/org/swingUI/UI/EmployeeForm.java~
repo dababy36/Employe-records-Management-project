@@ -1,0 +1,211 @@
+package org.swingUI.UI;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+public class EmployeeForm extends JFrame {
+
+    // Table and model
+    private JTable table;
+    private DefaultTableModel tableModel;
+
+    // Filter fields
+    private JTextField statusField, departmentField, startDateField, endDateField;
+
+    // Buttons
+    private JButton filterButton, updateButton, deleteButton, addButton;
+
+    // API URL
+    private static final String API_URL = "http://localhost:8080/api/employees";
+
+    public EmployeeForm() {
+        // Set up the frame
+        setTitle("Employee Management");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        setLayout(new BorderLayout());
+
+        // Create filter panel
+        JPanel filterPanel = new JPanel(new GridLayout(1, 6));
+        statusField = new JTextField();
+        departmentField = new JTextField();
+        startDateField = new JTextField();
+        endDateField = new JTextField();
+        filterButton = new JButton("Filter");
+
+        filterPanel.add(new JLabel("Status:"));
+        filterPanel.add(statusField);
+        filterPanel.add(new JLabel("Department:"));
+        filterPanel.add(departmentField);
+        filterPanel.add(new JLabel("Start Date:"));
+        filterPanel.add(startDateField);
+        filterPanel.add(new JLabel("End Date:"));
+        filterPanel.add(endDateField);
+        filterPanel.add(filterButton);
+
+        add(filterPanel, BorderLayout.NORTH);
+
+        // Create table
+        tableModel = new DefaultTableModel(new String[]{"ID", "Name", "Department", "Status", "Start Date", "End Date"}, 0);
+        table = new JTable(tableModel);
+        JScrollPane scrollPane = new JScrollPane(table);
+        add(scrollPane, BorderLayout.CENTER);
+
+        // Create button panel
+        JPanel buttonPanel = new JPanel();
+        updateButton = new JButton("Update");
+        deleteButton = new JButton("Delete");
+        addButton = new JButton("Add");
+
+        buttonPanel.add(updateButton);
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(addButton);
+
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        // Attach action listeners
+        filterButton.addActionListener(new FilterActionListener());
+        updateButton.addActionListener(new UpdateActionListener());
+        deleteButton.addActionListener(new DeleteActionListener());
+        addButton.addActionListener(new AddActionListener());
+
+        // Fetch initial data
+        fetchDataFromAPI(API_URL);
+
+        // Center the frame on the screen
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    // Fetch data from API and populate the table
+    private void fetchDataFromAPI(String url) {
+        try {
+            String response = sendGetRequest(url);
+            JsonArray employees = new Gson().fromJson(response, JsonArray.class);
+
+            // Clear the table
+            tableModel.setRowCount(0);
+
+            // Populate the table
+            for (int i = 0; i < employees.size(); i++) {
+                JsonObject employee = employees.get(i).getAsJsonObject();
+                tableModel.addRow(new String[]{
+                        employee.get("id").getAsString(),
+                        employee.get("name").getAsString(),
+                        employee.get("department").getAsString(),
+                        employee.get("status").getAsString(),
+                        employee.get("startDate").getAsString(),
+                        employee.get("endDate").getAsString()
+                });
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error fetching data from API.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Send GET request to API
+    private String sendGetRequest(String url) throws IOException {
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestMethod("GET");
+
+        Scanner scanner = new Scanner(connection.getInputStream());
+        StringBuilder response = new StringBuilder();
+        while (scanner.hasNext()) {
+            response.append(scanner.nextLine());
+        }
+        scanner.close();
+
+        return response.toString();
+    }
+
+    // Filter action listener
+    private class FilterActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String status = statusField.getText();
+            String department = departmentField.getText();
+            String startDate = startDateField.getText();
+            String endDate = endDateField.getText();
+
+            String filterUrl = API_URL + "?status=" + status + "&department=" + department +
+                    "&startDate=" + startDate + "&endDate=" + endDate;
+
+            fetchDataFromAPI(filterUrl);
+        }
+    }
+
+    // Update action listener
+    private class UpdateActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(EmployeeForm.this, "Please select a row to update.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String id = tableModel.getValueAt(selectedRow, 0).toString();
+            String name = tableModel.getValueAt(selectedRow, 1).toString();
+            String department = tableModel.getValueAt(selectedRow, 2).toString();
+            String status = tableModel.getValueAt(selectedRow, 3).toString();
+            String startDate = tableModel.getValueAt(selectedRow, 4).toString();
+            String endDate = tableModel.getValueAt(selectedRow, 5).toString();
+
+            // Open update form
+            UpdateForm updateForm = new UpdateForm(id, name, department, status, startDate, endDate);
+            updateForm.setVisible(true);
+        }
+    }
+
+    // Delete action listener
+    private class DeleteActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(EmployeeForm.this, "Please select a row to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String id = tableModel.getValueAt(selectedRow, 0).toString();
+
+            try {
+                sendDeleteRequest(API_URL + "/" + id);
+                fetchDataFromAPI(API_URL); // Refresh table
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(EmployeeForm.this, "Error deleting employee.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    // Add action listener
+    private class AddActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Open add form
+            AddForm addForm = new AddForm();
+            addForm.setVisible(true);
+        }
+    }
+
+    // Send DELETE request to API
+    private void sendDeleteRequest(String url) throws IOException {
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.getResponseCode(); // Trigger the request
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(EmployeeForm::new);
+    }
+}

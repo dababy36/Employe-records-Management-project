@@ -1,0 +1,5 @@
+package com.employe_management.erms.DTOs;
+
+public class ManagerPatch {
+    
+}

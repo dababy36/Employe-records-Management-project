@@ -1,0 +1,4 @@
+package com.employe_management.erms.entity;
+
+public class auditTrail {
+}

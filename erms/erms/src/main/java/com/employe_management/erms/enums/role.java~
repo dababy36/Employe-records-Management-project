@@ -1,0 +1,2 @@
+package com.employe_management.erms.enums;public enum role {
+}
