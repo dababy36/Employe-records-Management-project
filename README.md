@@ -1,64 +1,41 @@
-Employee Records Management System
-Tasks Completed
-1. Backend Development
+## Backlog
 
-    RESTful API: Developed using Spring Boot.
+## Note
+ The decision to Dockerize only the backend and database was made because creating a Docker image for the Swing-based desktop UI would require extensive host machine configuration, which is highly dependent on the operating system. Instead, the UI desktop project can be run directly on the host machine, while the backend and database are containerized for consistency and ease of deployment.
 
-        Employee Management: Implemented CRUD operations for employee data.
+## Features
+- [x] Implement CRUD operations for HR Personnel
+- [x] Implement search and filtering functionality
+- [x] Generate basic reports
+- [x] Implement JWT authentication and authorization
+  - [x] User authentication with JWT
+  - [x] Role-based authorization (HR, Manager, Admin)
+  - [x] Token management (generation, validation, expiration)
+- [x] Audit Trail
+  - [x] Log changes to employee records
+  - [x] Track who made changes and when
+- [x] Validation Rules
+  - [x] Ensure valid email format
+  - [x] Ensure unique Employee ID
+-create docker image for testing app locally
+  
 
-        JWT Authentication and Authorization: Added JWT-based authentication and role-based authorization (HR Personnel, Managers, Administrators).
+## Bugs
+- [ ]  work with Mysql instead Oracle Database
+- [ ]  Unit tests failed to run due to dependecies conflict
+      
 
-        Audit Trail: Logged all changes to employee records, including who made the change and when.
+## Tests
+- 
+  - [x] Test CRUD operations
+  - [x] Test search and filtering
+  - [x] Test reporting functionality
+  - [x] Test JWT authentication and authorization
+- [x] Create Postman Collection for API testing
+  - [x] Test all endpoints
+  - [x] Validate responses and error handling
 
-        Search and Filtering: Implemented search and filtering for employees by name, ID, department, and job title.
-
-        Validation Rules: Added validation for employee data (e.g., email format, unique Employee ID).
-
-    Database Integration: Integrated with MySQL for data storage.
-
-    Swagger Documentation: Added Swagger for API documentation.
-
-    Docker Support: Created a Docker image for the backend and MySQL database.
-
-2. Frontend Development
-
-    Swing-Based UI: Developed a desktop UI using Swing.
-
-        Role-Based Access: Implemented features for HR Personnel, Managers, and Administrators.
-
-        Layout Management: Used MigLayout and GridBagLayout for the interface.
-
-        Validation: Added client-side validation for employee data.
-
-3. Documentation
-
-    README.md: Created a comprehensive README file.
-
-    API Documentation: Documented API endpoints using Swagger.
-
-    Backlog: Maintained a backlog of tasks in BACKLOG.md.
-
-4. Testing
-
-    Postman Collection: Created a Postman collection for API testing.
-
-    Unit Tests: Wrote unit tests for the backend (not fully functional due to dependency conflicts).
-
-Tasks Not Completed
-1. Unit Tests
-
-    Status: Partially implemented but not working due to dependency conflicts.
-
-    Reason: Dependency conflicts in the testing framework.
-
-2. Docker for GUI
-
-    Status: Not implemented.
-
-    Reason: Docker is not ideal for GUI applications due to the need for additional software (e.g., X11 forwarding) and configuration challenges.
-
-3. Oracle Database
-
-    Status: Not used.
-
-    Reason: Configuration challenges on the development machine. MySQL was used as an alternative.
+## Documentation
+- [x] Create README.md
+- [ ] create an Postman api collection here the lien :https://drive.google.com/drive/folders/1t_NmaMsOHstPvZgNwYGDodelWwFVKVTa?usp=sharing
+  
