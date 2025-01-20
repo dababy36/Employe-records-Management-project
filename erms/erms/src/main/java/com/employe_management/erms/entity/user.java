@@ -37,7 +37,7 @@ public class user implements UserDetails {
     @Column(nullable = false)
     private boolean active = true;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "department_id", nullable = false)
+    @JoinColumn(name = "department_id")
     @JsonBackReference  // Prevent infinite recursion when call to JSON
     private departement departement;
 

@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.employe_management.erms.enums.employementStatus;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -16,7 +17,7 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Table(name = "employe")
 @EntityListeners(EmployeeAuditListener.class)
 public class employe {
@@ -48,4 +49,8 @@ public class employe {
     @JoinColumn(name = "department_id", nullable = false)
      // Prevent infinite recursion when call to JSON
     private departement departement;
+
+
+    public employe(String johnDoe, String mail, String softwareEngineer, com.employe_management.erms.enums.employementStatus employementStatus, String s, String s1, LocalDate of, com.employe_management.erms.entity.departement hrDept) {
+    }
 }

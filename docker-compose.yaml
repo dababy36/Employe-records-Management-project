@@ -7,7 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rocksprince123  # Root password for MySQL
       MYSQL_DATABASE: erms-db  # Name of the database to create
-      MYSQL_USER: root  # MySQL username
+      MYSQL_USER: appuser  # MySQL username
       MYSQL_PASSWORD: rocksprince123  # MySQL password
     ports:
       - "3307:3306"  # Expose MySQL port to the host
@@ -16,7 +16,7 @@ services:
 
   # Spring Boot Backend Service
   backendapp:
-    image: backendapp  # Your Spring Boot Docker image
+    image: dbomar123/backendapp:latest  # Your Spring Boot Docker image
     container_name: backend_app
     ports:
       - "8080:8080"  # Expose Spring Boot port to the host
@@ -24,7 +24,7 @@ services:
       - mysql  # Ensure MySQL starts before Spring Boot
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/erms-db  # JDBC URL for MySQL
-      SPRING_DATASOURCE_USERNAME: root  # MySQL username
+      SPRING_DATASOURCE_USERNAME: appuser  # MySQL username
       SPRING_DATASOURCE_PASSWORD: rocksprince123  # MySQL password
       SPRING_JPA_HIBERNATE_DDL_AUTO: update  # Hibernate property
       SPRING_JPA_SHOW_SQL: true  # Hibernate property
