@@ -36,6 +36,7 @@
   - [x] Validate responses and error handling
 
 ## Documentation
+- [x] configure Swagger UI to map archtecture of API's : */swagger-ui/index.html
 - [x] Create README.md
-- [ ] create an Postman api collection here the lien :https://drive.google.com/drive/folders/1t_NmaMsOHstPvZgNwYGDodelWwFVKVTa?usp=sharing
+- [x] create an Postman api collection here the lien :https://drive.google.com/drive/folders/1t_NmaMsOHstPvZgNwYGDodelWwFVKVTa?usp=sharing
   
